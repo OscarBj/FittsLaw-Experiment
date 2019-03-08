@@ -5,10 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author Lenovo
- */
 public class GameData {
     // Metadata
     public final String id;
