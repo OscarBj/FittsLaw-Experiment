@@ -1,2 +1,3 @@
 /experiment-fittslaw/nbproject/
-/experiment-fittslaw/target/
+target/
+*.jar
