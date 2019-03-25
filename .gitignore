@@ -1,3 +1,5 @@
 /experiment-fittslaw/nbproject/
 target/
 *.jar
+*.class
+*.lst

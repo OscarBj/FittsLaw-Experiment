@@ -16,7 +16,11 @@ public class ResultsView extends VBox {
     Button exitButton = new Button("Exit");
     Button playButton = new Button("Play Again");
 
-    public ResultsView() {
+    public ResultsView(boolean expmode) {
+        if(expmode){
+            resultsArea.setVisible(false);
+            saveButton.setVisible(false);
+        }
         initView();
     }
 

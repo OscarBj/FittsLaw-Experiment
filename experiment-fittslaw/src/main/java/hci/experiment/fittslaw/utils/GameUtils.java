@@ -6,7 +6,15 @@ package hci.experiment.fittslaw.utils;
  */
 public class GameUtils {
 
-    public static boolean isValidGameParams(int targets, int configurations, String id) {
+    public static boolean isValidGameParams(String targets_s, String configurations_s, String id) {
+        int targets = 0;
+        int configurations = 0;
+        try {
+            targets = Integer.parseUnsignedInt(targets_s);
+            configurations = Integer.parseUnsignedInt(configurations_s);
+        } catch (NumberFormatException ex) {
+            return false;
+        }
         if (id.isEmpty() || id.equals("")) {
             return false;
         }
@@ -27,20 +35,21 @@ public class GameUtils {
     public static double getW() {
         return 500.0;
     }
-    
-    public static double getTargetMinRad(){
+
+    public static double getTargetMinRad() {
         return 10.0;
     }
-    
-    public static double getTargetMaxRad(){
+
+    public static double getTargetMaxRad() {
         return 50.0;
     }
-    
-    public static double getTargetMinDist(){
+
+    public static double getTargetMinDist() {
         return 100.0;
     }
-    
-    public static double getTargetMaxDist(){
+
+    public static double getTargetMaxDist() {
         return 200.0;
     }
+
 }

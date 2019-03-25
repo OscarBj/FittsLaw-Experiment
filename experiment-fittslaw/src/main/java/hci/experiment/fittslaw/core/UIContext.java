@@ -1,5 +1,6 @@
 package hci.experiment.fittslaw.core;
 
+import hci.experiment.fittslaw.utils.GameUtils;
 import hci.experiment.fittslaw.views.GameView;
 import hci.experiment.fittslaw.views.ResultsView;
 import hci.experiment.fittslaw.views.StartupView;
@@ -14,14 +15,15 @@ class UIContext {
     private final GameView gameView;
     private final ResultsView resultsView;
     private final GameController gameController;
-
-    UIContext(GameController gameController) {
-        this.gameController = gameController;
+    
+    UIContext(GameController gameController, StartupView startupView, GameView gameView, ResultsView resultsView) {
+        
         root = new StackPane();
-
-        startupView = gameController.getStartupView();
-        gameView = gameController.getGameView();
-        resultsView = gameController.getResultsView();
+        
+        this.gameController = gameController;
+        this.startupView = startupView;
+        this.gameView = gameView;
+        this.resultsView = resultsView;
         initViews();
 
     }
@@ -32,13 +34,21 @@ class UIContext {
         startupView.setVisible(true);
         gameView.setVisible(false);
         resultsView.setVisible(false);
-
+        
+        startupView.setSelectFileEvent((event) -> {
+            String path = gameController.initLogDir();
+            startupView.filePathField.setText(path);
+        });
+        
         startupView.setChangeViewEvent((event) -> {
-            if (gameController.isVerifiedConfiguration()) {
+
+            if (GameUtils.isValidGameParams(startupView.nrofTargetsField.getText(), startupView.nrofConfsField.getText(), startupView.idField.getText())) {
                 startupView.setVisible(false);
-                gameView.setGameData(gameController.getGameData());
-                gameView.initView();
+                gameController.setGameData(startupView.nrofTargetsField.getText(), startupView.nrofConfsField.getText(), startupView.idField.getText());
+                gameController.initController();
+//                gameView.initView();
                 gameView.setVisible(true);
+
             }
         });
 
@@ -53,7 +63,7 @@ class UIContext {
             gameView.setVisible(false);
             startupView.setVisible(true);
         });
-        
+        // TODO move to controller and save after each conf
         resultsView.setSaveDataEvent((event) -> {
             gameController.saveToCSV();
         });
