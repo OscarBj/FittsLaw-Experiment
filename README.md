@@ -8,13 +8,13 @@ configurations have been completed. The order of configurations is generated ran
 targets, the completion time, the number of clicks errors are recorded and stored in a csv file. 
 
 The application can be launched in two modes:
--Dev mode is launched by default and lets the user configure parameters:
-	-Number of targets
-	-Number of target configurations
-	-Participant id
-	-Log location 
--Experiment mode is launched with the command line arg -experimentmode *log file path*  
-	-This mode restricts the user view and displays only necessary information
+- Dev mode is launched by default and lets the user configure parameters:
+	- Number of targets
+	- Number of target configurations
+	- Participant id
+	- Log location 
+- Experiment mode is launched with the command line arg -experimentmode *log file path*  
+	- This mode restricts the user view and displays only necessary information
 	
 TODO:
 -Async file writer
